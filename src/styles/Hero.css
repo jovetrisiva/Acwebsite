@@ -1,0 +1,63 @@
+/* ════════════════════════════════════════
+   Hero.css
+   Import in: src/components/Hero.jsx
+   ════════════════════════════════════════ */
+
+.hero {
+  min-height: 100vh; padding: 120px 5% 80px;
+  display: flex; align-items: center; position: relative; overflow: hidden;
+}
+
+/* Background image layer */
+.hero-bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 70% 60% at 60% 40%, rgba(26,79,216,0.2) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 40% at 20% 80%, rgba(56,189,248,0.1) 0%, transparent 60%),
+    url('/ac3.jpg') center/cover no-repeat;   /* ← put your image in /public/ac3.jpg */
+  filter: brightness(0.3);
+}
+body.light .hero-bg { filter: brightness(0.5); }
+
+/* Grid overlay */
+.hero-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 60px 60px; opacity: 0.4;
+}
+
+.hero-content { position: relative; z-index: 1; max-width: 700px; }
+
+/* Blinking badge */
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(56,189,248,0.1); border: 1px solid rgba(56,189,248,0.3);
+  color: var(--sky); padding: 6px 16px; border-radius: 100px;
+  font-size: 0.8rem; font-weight: 600; letter-spacing: 0.05em;
+  text-transform: uppercase; margin-bottom: 24px;
+}
+.hero-badge::before {
+  content: ''; width: 6px; height: 6px; border-radius: 50%;
+  background: var(--sky); animation: pulse 1.5s infinite;
+}
+
+.hero h1 {
+  font-family: 'Sora', sans-serif;
+  font-size: clamp(2.4rem, 6vw, 4.5rem); font-weight: 800; line-height: 1.1; margin-bottom: 20px;
+}
+.hero h1 span {
+  background: linear-gradient(90deg, var(--sky), var(--blue));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.hero p { font-size: 1.1rem; color: var(--muted); line-height: 1.7; margin-bottom: 36px; max-width: 540px; }
+.hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) { .hero { padding: 100px 5% 60px; } }
+@media (max-width: 480px) {
+  .hero-actions { flex-direction: column; }
+  .btn-primary, .btn-outline { width: 100%; justify-content: center; }
+}
+
